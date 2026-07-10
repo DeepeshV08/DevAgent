@@ -17,4 +17,6 @@ body('password').isLength({min: 3}).withMessage("Password must be atleast 3 char
 authRouter.get('/profile', authUser ,profileController)
 
 authRouter.get('/logout', authUser, logoutController)
+
+// authRouter.get('/getAllUser', authUser, getAllUserController)
 export default authRouter
