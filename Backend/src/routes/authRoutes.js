@@ -1,5 +1,5 @@
 import express from 'express'
-import { createUserController, loginController, logoutController, profileController} from '../controllers/authController.js'
+import { createUserController, getAllUserController, loginController, logoutController, profileController} from '../controllers/authController.js'
 import { body } from 'express-validator'
 import { authUser } from '../middlewares/authMiddleware.js'
 
@@ -18,5 +18,6 @@ authRouter.get('/profile', authUser ,profileController)
 
 authRouter.get('/logout', authUser, logoutController)
 
-// authRouter.get('/getAllUser', authUser, getAllUserController)
+authRouter.get('/getAllUser', authUser, getAllUserController)
+
 export default authRouter

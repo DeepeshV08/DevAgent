@@ -1,5 +1,5 @@
 import projectModel from "../models/projectModel.js";
-import { createProject, getAllProjectByUserId } from "../service/projectService.js";
+import { createProject, getAllProjectByUserId, getProjectById } from "../service/projectService.js";
 import {validationResult} from 'express-validator'
 import userModel from '../models/userModel.js'
 
@@ -48,6 +48,22 @@ export const getAllProject = async (req, res) => {
     }
 }
 
+export const getProjectsById = async(req, res) => {
+    const {projectId} = req.params
+
+    try{
+        const project = await getProjectById({
+            projectId
+        })
+
+        return res.status(200).json({
+            project
+        })
+    }catch(err){
+        console.log(err)
+        res.status(400).json({error: err.message})
+    }
+}
 export const addUserToProject  = async(req, res) => {
     const errors = validationResult(req)
 
@@ -67,7 +83,7 @@ export const addUserToProject  = async(req, res) => {
         return res.status(200).json({
             project
         })
-        
+
     }catch(err){
         console.log(err)
         res.status(400).json({error: error.message})

@@ -44,9 +44,9 @@ const Home = () => {
                 setStatus("idle")
                 setProjectName("")
                 // refresh the list so the new project shows up immediately
-                // axios.get('/projects/all').then((res) => {
-                //     setProject(res.data.projects)
-                // }).catch(err => console.log(err))
+                axios.get('/api/projects/all').then((res) => {
+                    setProject(res.data.projects)
+                }).catch(err => console.log(err))
             })
             .catch((error) => {
                 console.log(error)
@@ -54,13 +54,13 @@ const Home = () => {
             })
     }
 
-    // useEffect(() => {
-    //     axios.get('/projects/all').then((res) => {
-    //         setProject(res.data.projects)
-    //     }).catch(err => {
-    //         console.log(err)
-    //     })
-    // }, [])
+    useEffect(() => {
+        axios.get('/api/projects/all').then((res) => {
+            setProject(res.data.projects)
+        }).catch(err => {
+            console.log(err)
+        })
+    }, [])
 
     // focus input + reset state whenever the modal opens
     useEffect(() => {
